@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Downloading - TapShare</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header" style="text-align: center;">
+            <h1 class="title">⬇️ Downloading...</h1>
+            <p class="subtitle">Your file will start downloading shortly</p>
+        </div>
+
+        <div class="nfc-animation"></div>
+
+        <div class="features" style="margin-top: 20px;">
+            <div class="feature">
+                <div class="feature-icon"><div class="spinner"></div></div>
+                <span>Preparing your file for download</span>
+            </div>
+        </div>
+
+        <div class="success-message" style="margin-top: 24px;">
+            ✓ File is being sent to you securely
+        </div>
+
+        <p class="small" style="margin-top: 24px;">If the download doesn't start automatically within a few seconds, please refresh the page or try again.</p>
+
+        <a href="/" class="btn secondary" style="margin-top: 20px;">← Back to Home</a>
+    </div>
+
+    <script>
+        // Auto-refresh if file isn't downloaded after timeout
+        setTimeout(() => {
+            if (!document.hidden) {
+                console.log('Download may have failed, consider refreshing');
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

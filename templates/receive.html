@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Receive File - TapShare</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← Back</a>
+        
+        <div class="header">
+            <h1 class="title">Receive</h1>
+            <p class="subtitle">Code or scan</p>
+        </div>
+
+        <form method="POST" class="form-section" id="receive-form">
+            <div class="form-group" style="display:flex; gap:8px;">
+                <input 
+                    type="text" 
+                    name="code" 
+                    id="code-input"
+                    maxlength="6" 
+                    minlength="6"
+                    inputmode="numeric"
+                    placeholder="000000"
+                    class="code-input" 
+                    required
+                    autofocus
+                    value="{{ pre_filled_code or '' }}">
+                <button type="submit" class="btn">Get</button>
+                <button type="button" class="btn secondary" id="scan-btn">Scan</button>
+            </div>
+        </form>
+
+        <!-- Scanner area (hidden until used) -->
+        <div id="scanner" style="display:none; margin-top:10px; text-align:center;">
+            <video id="video" autoplay playsinline style="width:100%; border-radius:12px; background:#000;"></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+            <div style="display:flex; gap:8px; justify-content:center; margin-top:8px;">
+                <button class="btn" id="stop-scan">Stop</button>
+            </div>
+            <p class="small" style="margin-top:8px;">Point camera at the QR code</p>
+        </div>
+
+        {% if error %}
+        <div class="error">
+            <span>⚠️</span>
+            <span>Invalid or expired code. Ask the sender for a new code.</span>
+        </div>
+        {% endif %}
+
+        <p class="small">Codes expire in 10 minutes.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script>
+        const scanBtn = document.getElementById('scan-btn');
+        const scannerEl = document.getElementById('scanner');
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const stopBtn = document.getElementById('stop-scan');
+        const codeInput = document.getElementById('code-input');
+        let stream = null;
+        let scanning = false;
+
+        function stopScanner(){
+            scanning = false;
+            scannerEl.style.display = 'none';
+            if(stream){
+                stream.getTracks().forEach(t => t.stop());
+                stream = null;
+            }
+        }
+
+        async function startScanner(){
+            try{
+                stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+                video.srcObject = stream;
+                scannerEl.style.display = 'block';
+                scanning = true;
+                requestAnimationFrame(tick);
+            }catch(e){
+                alert('Camera access denied or not available.');
+            }
+        }
+
+        function tick(){
+            if(!scanning) return;
+            if(video.readyState === video.HAVE_ENOUGH_DATA){
+                const w = video.videoWidth;
+                const h = video.videoHeight;
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, w, h);
+                const imageData = ctx.getImageData(0,0,w,h);
+                const code = jsQR(imageData.data, w, h, { inversionAttempts: 'attemptBoth' });
+                if(code){
+                    // extract code from URL or plain text
+                    let text = code.data || '';
+                    // If QR contains a URL ending with /download/<code> or ?code=, extract numeric code
+                    const m = text.match(/download\/(\d{6})/) || text.match(/code=(\d{6})/);
+                    const found = m ? m[1] : (text.match(/\b(\d{6})\b/) ? text.match(/\b(\d{6})\b/)[1] : null);
+                    if(found){
+                        codeInput.value = found;
+                        stopScanner();
+                        // optionally auto-submit
+                        document.getElementById('receive-form').submit();
+                        return;
+                    }
+                }
+            }
+            requestAnimationFrame(tick);
+        }
+
+        scanBtn?.addEventListener('click', () => {
+            startScanner();
+        });
+        stopBtn?.addEventListener('click', () => {
+            stopScanner();
+        });
+    </script>
+</body>
+</html>

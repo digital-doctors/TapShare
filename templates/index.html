@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>TapShare - Instant File Sharing</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/static/pic.png" type="image/png">
+    <link rel="apple-touch-icon" href="/static/pic.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">TapShare</h1>
+            <p class="subtitle">Instant file sharing — secure, fast, and private</p>
+        </div>
+
+        {% if logged_in %}
+        <div class="user-badge">
+            <span class="user-icon"></span>
+            <span class="user-name">{{ username }}</span>
+            <a href="/logout" class="logout-link">Logout</a>
+        </div>
+        {% endif %}
+
+        <div class="btn-group">
+            <a href="/send" class="btn">
+                <span> Send File</span>
+            </a>
+            {% if logged_in %}
+            <a href="/friends" class="btn" style="background: #1a1a1a;">
+                <span>Manage Friends</span>
+            </a>
+            <a href="/inbox" class="btn secondary">
+                <span>My Inbox</span>
+            </a>
+            <a href="/receive" class="btn secondary">
+                <span> Receive via Code</span>
+            </a>
+            {% else %}
+            <a href="/receive" class="btn secondary">
+                <span> Receive via Code</span>
+            </a>
+            {% endif %}
+        </div>
+
+        {% if not logged_in %}
+        <div class="auth-section">
+            <p class="small" style="margin-bottom: 12px;">Want to send files directly to friends?</p>
+            <div style="display: flex; gap: 8px;">
+                <a href="/register" class="btn secondary" style="flex: 1;">Register</a>
+                <a href="/login" class="btn secondary" style="flex: 1;">Login</a>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <span><strong>No accounts needed</strong> — instant code sharing</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <span><strong>Send to friends</strong> — add friends and share securely</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <span><strong>Auto-expires</strong> — 10 min codes, 2 day inbox</span>
+            </div>
+        </div>
+
+        <p class="small">Files are stored temporarily and automatically deleted for your privacy.</p>
+    </div>
+</body>
+</html>

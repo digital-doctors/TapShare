@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>My Inbox - TapShare</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .title {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header .subtitle {
+            margin: 5px 0 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .inbox-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .inbox-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fafafa;
+        }
+
+        .inbox-item-info {
+            display: flex;
+            flex-direction: column;
+            max-width: 75%;
+            overflow: hidden;
+        }
+
+        .inbox-item-filename {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .inbox-item-meta {
+            font-size: 13px;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .inbox-item-meta span {
+            white-space: nowrap;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            font-size: 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 35px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .empty-state {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+        .small {
+            font-size: 13px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← Back</a>
+        
+        <div class="header">
+            <h1 class="title">My Inbox</h1>
+            <p class="subtitle">{{ username }}</p>
+        </div>
+
+        {% if files %}
+        <div class="inbox-list">
+            {% for file in files %}
+            <div class="inbox-item">
+                <div class="inbox-item-info">
+                    <div class="inbox-item-filename">{{ file.filename }}</div>
+                    <div class="inbox-item-meta">
+                        <span>From: <strong>{{ file.sender }}</strong></span>
+                        <span>{{ file.timestamp[:10] }} {{ file.timestamp[11:16] }}</span>
+                    </div>
+                </div>
+                <a href="/inbox/download/{{ file.id }}" class="btn">Download</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon"></div>
+            <p class="subtitle">No files yet</p>
+            <p class="small">Files sent to you will appear here</p>
+        </div>
+        {% endif %}
+
+        <p class="small" style="margin-top: 16px;">Files expire after 2 days and are deleted after download</p>
+    </div>
+</body>
+</html>

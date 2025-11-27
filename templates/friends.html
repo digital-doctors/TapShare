@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Friends - TapShare</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← Back</a>
+        
+        <div class="header">
+            <h1 class="title">Friends</h1>
+            <p class="subtitle">Manage your connections</p>
+        </div>
+
+        <!-- Search for friends -->
+        <form method="POST" action="/friends/search" class="form-section">
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    name="query" 
+                    placeholder="Search for friends by name..."
+                    class="code-input"
+                    style="text-align: left; letter-spacing: normal; font-family: inherit;"
+                    required>
+                <button type="submit" class="btn">Search</button>
+            </div>
+        </form>
+
+        <!-- Search Results -->
+        {% if search_results %}
+        <div class="friends-section">
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #000;">Search Results</h3>
+            <div class="friends-list-container">
+                {% for user in search_results %}
+                <div class="search-result-item">
+                    <span>{{ user.name }}</span>
+                    {% if user.status == 'friend' %}
+                    <span class="friend-status accepted">Friends</span>
+                    {% elif user.status == 'sent' %}
+                    <span class="friend-status pending">Request Sent</span>
+                    {% elif user.status == 'received' %}
+                    <span class="friend-status pending">Pending</span>
+                    {% else %}
+                    <form method="POST" action="/friends/add/{{ user.name }}" style="display: inline;">
+                        <button type="submit" class="btn" style="padding: 8px 16px; font-size: 13px;">Add Friend</button>
+                    </form>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Friend Requests -->
+        {% if requests_received %}
+        <div class="friends-section">
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #000;">Friend Requests</h3>
+            {% for request in requests_received %}
+            <div class="friend-request-item">
+                <div class="friend-request-info">
+                    <div class="friend-request-name">{{ request }}</div>
+                </div>
+                <div class="friend-request-actions">
+                    <form method="POST" action="/friends/accept/{{ request }}" style="display: inline;">
+                        <button type="submit" class="btn" style="padding: 10px 16px; font-size: 14px;">Accept</button>
+                    </form>
+                    <form method="POST" action="/friends/reject/{{ request }}" style="display: inline;">
+                        <button type="submit" class="btn secondary" style="padding: 10px 16px; font-size: 14px;">Decline</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Friends List -->
+        <div class="friends-section">
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #000;">My Friends ({{ friends|length }})</h3>
+            {% if friends %}
+            <div class="friends-list-container">
+                {% for friend in friends %}
+                <div class="friend-item">
+                    <span>{{ friend }}</span>
+                    <span class="friend-status accepted">Friends</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">👥</div>
+                <p class="subtitle">No friends yet</p>
+                <p class="small">Search and add friends to start sharing files</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Pending Requests Sent -->
+        {% if requests_sent %}
+        <div class="friends-section">
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #000;">Pending Requests</h3>
+            <div class="friends-list-container">
+                {% for request in requests_sent %}
+                <div class="friend-item">
+                    <span>{{ request }}</span>
+                    <span class="friend-status pending">Pending</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Auto-submit friend request via AJAX for better UX
+        const addFriendForms = document.querySelectorAll('form[action^="/friends/add/"]');
+        addFriendForms.forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'}
+                });
+                if (response.ok) {
+                    const button = form.querySelector('button');
+                    button.textContent = 'Request Sent';
+                    button.disabled = true;
+                    button.style.opacity = '0.6';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

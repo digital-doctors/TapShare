@@ -1,0 +1,43 @@
+2025-11-18 20:48:57,042 WARNING  * Debugger is active!
+2025-11-18 20:48:57,049 INFO  * Debugger PIN: 859-903-728
+2025-11-18 20:49:26,260 INFO  * Detected change in '/Users/nikhileshkandasamy/Documents/Nikhi/To_Drive/vscode/Practice1/app.py', reloading
+2025-11-18 20:49:26,488 WARNING  * Debugger is active!
+2025-11-18 20:49:26,493 INFO  * Debugger PIN: 859-903-728
+2025-11-18 20:50:37,173 INFO  * Detected change in '/Users/nikhileshkandasamy/Documents/Nikhi/To_Drive/vscode/Practice1/app.py', reloading
+2025-11-18 20:50:37,418 WARNING  * Debugger is active!
+2025-11-18 20:50:37,425 INFO  * Debugger PIN: 859-903-728
+2025-11-18 20:52:35,103 INFO  * Detected change in '/Users/nikhileshkandasamy/Documents/Nikhi/To_Drive/vscode/Practice1/app.py', reloading
+2025-11-18 20:52:35,353 WARNING  * Debugger is active!
+2025-11-18 20:52:35,359 INFO  * Debugger PIN: 859-903-728
+2025-11-18 20:52:37,181 INFO 127.0.0.1 - - [18/Nov/2025 20:52:37] "GET /send HTTP/1.1" 200 -
+2025-11-18 20:52:37,518 INFO 127.0.0.1 - - [18/Nov/2025 20:52:37] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-11-18 20:52:47,817 INFO UPLOAD: code=2919f8f204a1c48dbbd9e42dd1ac792b filename=ICDA 4 Legislation Packet 2025.pdf size=991851
+2025-11-18 20:52:47,850 INFO 127.0.0.1 - - [18/Nov/2025 20:52:47] "POST /send HTTP/1.1" 200 -
+2025-11-18 20:52:47,870 INFO 127.0.0.1 - - [18/Nov/2025 20:52:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-11-18 20:52:49,884 INFO 127.0.0.1 - - [18/Nov/2025 20:52:49] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:52:51,884 INFO 127.0.0.1 - - [18/Nov/2025 20:52:51] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:52:53,887 INFO 127.0.0.1 - - [18/Nov/2025 20:52:53] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:52:55,888 INFO 127.0.0.1 - - [18/Nov/2025 20:52:55] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:52:57,894 INFO 127.0.0.1 - - [18/Nov/2025 20:52:57] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:52:59,889 INFO 127.0.0.1 - - [18/Nov/2025 20:52:59] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:01,891 INFO 127.0.0.1 - - [18/Nov/2025 20:53:01] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:03,890 INFO 127.0.0.1 - - [18/Nov/2025 20:53:03] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:05,895 INFO 127.0.0.1 - - [18/Nov/2025 20:53:05] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:07,898 INFO 127.0.0.1 - - [18/Nov/2025 20:53:07] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:09,891 INFO 127.0.0.1 - - [18/Nov/2025 20:53:09] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:11,893 INFO 127.0.0.1 - - [18/Nov/2025 20:53:11] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:13,895 INFO 127.0.0.1 - - [18/Nov/2025 20:53:13] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:15,895 INFO 127.0.0.1 - - [18/Nov/2025 20:53:15] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:17,897 INFO 127.0.0.1 - - [18/Nov/2025 20:53:17] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:19,897 INFO 127.0.0.1 - - [18/Nov/2025 20:53:19] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:21,898 INFO 127.0.0.1 - - [18/Nov/2025 20:53:21] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:23,898 INFO 127.0.0.1 - - [18/Nov/2025 20:53:23] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:25,901 INFO 127.0.0.1 - - [18/Nov/2025 20:53:25] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:27,904 INFO 127.0.0.1 - - [18/Nov/2025 20:53:27] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:29,904 INFO 127.0.0.1 - - [18/Nov/2025 20:53:29] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:31,905 INFO 127.0.0.1 - - [18/Nov/2025 20:53:31] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:33,903 INFO 127.0.0.1 - - [18/Nov/2025 20:53:33] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:35,902 INFO 127.0.0.1 - - [18/Nov/2025 20:53:35] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:37,908 INFO 127.0.0.1 - - [18/Nov/2025 20:53:37] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:39,907 INFO 127.0.0.1 - - [18/Nov/2025 20:53:39] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
+2025-11-18 20:53:41,907 INFO 127.0.0.1 - - [18/Nov/2025 20:53:41] "GET /api/check-download/2919f8f204a1c48dbbd9e42dd1ac792b HTTP/1.1" 200 -
